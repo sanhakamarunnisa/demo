@@ -1,0 +1,70 @@
+
+*cd /data*
+ls
+hadoop fs -copyFromLocal /data/Book1.csv /user/root/data 
+hadoop fs -put /data/Book2.csv  /user/root/d
+
+
+
+
+ hive 
+ use sanha;  
+create table book(id int,language string) row format delimited                                                           
+ fields terminated by ','                                                                                                 
+stored as textfile                                                                                                       
+TBLPROPERTIES("skip.header.line.count"="1");  
+load data local inpath '/data/table1.csv' overwrite into table book;           -load from local
+select *from book; 
+create table if not exists table2(emp_id string,ename string,Sal int,state string,Dept int)row format delimited
+fields terminated by ','                                                                                                 
+stored as orc                                                                                                      
+TBLPROPERTIES("transactional"="true");  
+
+
+
+create table book(
+`Book id` int,
+`Book Language` string
+)
+row format delimited
+fields terminated by ','                                                                                                 
+stored as textfile                                                                                                       
+TBLPROPERTIES("skip.header.line.count"="1");
+
+
+hadoop fs -chmod 777 /user/root/data/Book1.csv 
+ hadoop fs -ls /user/root/data                                                  -hadoop shell
+hadoop fs -chmod 777 /user/root/data 
+hadoop fs -ls /user/root 
+
+load data inpath '/user/root/data' overwrite into table book;     -load from hdfs
+
+PUT command:
+cd /data  
+hadoop fs -put Book1.csv zipcodes.csv /user/root/sanha 
+
+hadoop fs -mkdir sanha ---create directory
+hadoop fs -rmr /user/root/test -delete directory
+hadoop fs -rm -r -skipTrash sanha1 
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE zipcodes(                                                                                                   
+RecordNumber int,                                                                                                        
+ Country string,                                                                                                          
+ City string,                                                                                                             
+Zipcode int)                                                                                                             
+ PARTITIONED BY(state string)                                                                                             
+ ROW FORMAT DELIMITED                                                                                                     
+ FIELDS TERMINATED BY ','
+stored as textfile ; 
+
+load data inpath '/user/root/data' overwrite into table zipcodes;  
